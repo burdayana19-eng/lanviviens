@@ -1,0 +1,400 @@
+/* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #000;
+    overflow-x: hidden;
+}
+
+/* --- ШАПКА --- */
+.black-header {
+    background-color: #000;
+    color: #fff;
+    padding: 30px 4%;
+    text-align: center;
+}
+/* --- ИСПРАВЛЕННАЯ ШАПКА ДЛЯ МОБИЛОК --- */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Выравниваем по центру по вертикали */
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-wrap: wrap; /* Позволяет элементам переноситься, если нет места */
+    gap: 10px;
+    position: relative;
+    z-index: 1000; /* Гарантируем, что шапка выше всего контента */
+}
+
+/* Специально для ссылки "Вернуться" на мобильных */
+.header-top a {
+    position: relative;
+    z-index: 1001; /* Ссылка должна быть самым верхним слоем */
+    padding: 10px 5px; /* Увеличиваем область нажатия пальцем */
+    white-space: nowrap; /* Чтобы текст не разрывался на две строки */
+    text-decoration: none;
+    color: #fff;
+}
+
+/* --- АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ --- */
+@media (max-width: 600px) {
+    .header-top {
+        justify-content: center; /* Центрируем всё на мобилке */
+        flex-direction: column; /* Элементы встают друг под другом */
+        gap: 15px;
+    }
+
+    .logo {
+        letter-spacing: 5px; /* Уменьшаем огромные отступы букв, чтобы лого не вылезало за экран */
+        font-size: 35px;
+        margin: 15px 0;
+    }
+
+    .main-nav {
+        gap: 15px; /* Уменьшаем расстояние между ссылками меню */
+    }
+}
+
+.main-nav a:hover { opacity: 0.7; }
+.sale-link { color: red !important; }
+
+/* --- ОСНОВНОЙ КОНТЕНТ (Универсальный) --- */
+.main-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0; /* Убираем падинги, чтобы фото прижалось к шапке */
+}
+
+.section-title {
+    text-align: center;
+    margin: 50px 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* Сетка товаров для главной */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
+    padding: 0 4%; /* Отступы только для сетки */
+}
+
+.product-card { text-align: center; }
+.product-card img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 1px solid #f0f0f0;
+}
+
+/* --- СЕКЦИЯ ОСНОВАТЕЛЬНИЦЫ (ФОТО КАК ФОН) --- */
+/* --- ИСПРАВЛЕННАЯ СЕКЦИЯ: ФОТО НА ВЕСЬ ЭКРАН --- */
+
+/* 1. Сначала растягиваем сам контейнер на 100% ширины */
+.main-content {
+    width: 100% !important; 
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.founder-hero {
+    width: 100%;
+    min-height: 95vh; 
+    background-image: url('img/myphoto.JPG');
+    background-size: cover; 
+    /* 25% — это "золотая середина" между прошлыми вариантами */
+    /* 45% — почти центр по вертикали, чтобы лицо не было слишком низко */
+    background-position: 25% 45%; 
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.founder-text-overlay {
+    width: 100%;
+    max-width: 480px; /* Вернул чуть больше ширины для текста */
+    background: rgba(255, 255, 255, 0.85); 
+    padding: 50px;
+    margin-right: 6%; 
+    backdrop-filter: blur(10px);
+}
+
+
+.founder-text-overlay h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.founder-text-overlay p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 850px) {
+    .founder-hero {
+        background-position: center top;
+        align-items: flex-end;
+        min-height: 100vh;
+    }
+    .founder-text-overlay {
+        max-width: 100%;
+        margin-right: 0;
+        padding: 30px 20px;
+        background: #fff;
+    }
+    .founder-text-overlay h2, .founder-text-overlay p {
+        text-align: center;
+    }
+}
+
+/* Стили специально для страницы платьев */
+.dresses-grid {
+    padding: 60px 0;
+}
+
+.grid-title {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 50px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.4;
+}
+
+/* Сетка 3 в ряд */
+.dresses-grid .container {
+    display: grid;
+    /* Создаем 3 колонки */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Отступы: 60px между рядами, 30px между колонками */
+    gap: 60px 30px; 
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Карточка платья */
+.dresses-grid .product-card {
+    text-align: center;
+}
+
+.dresses-grid .product-card img {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Соотношение сторон фото */
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.dresses-grid .product-card h3 {
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.dresses-grid .product-card .price {
+    color: #888;
+    font-weight: bold;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 900px) {
+    .dresses-grid .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 в ряд на планшетах */
+    }
+}
+
+@media (max-width: 600px) {
+    .dresses-grid .container {
+        grid-template-columns: 1fr; /* 1 в ряд на телефонах */
+    }
+}
+/* --- СЕКЦИЯ КОМАНДЫ (4 В РЯД) --- */
+.team-section {
+    padding: 60px 0;
+}
+
+.team-section .container {
+    display: grid;
+    /* Устанавливаем ровно 4 колонки */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.team-card {
+    text-align: center;
+}
+
+.team-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Делаем фото квадратными для аккуратности */
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 2px; /* Легкое скругление углов */
+}
+
+.team-card h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.team-card .role {
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .team-section .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 в ряд на планшетах */
+    }
+}
+
+@media (max-width: 600px) {
+    .team-section .container {
+        grid-template-columns: 1fr; /* 1 в ряд на телефонах */
+    }
+}
+.back-link {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #555;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #ccc;
+    border-color: #fff;
+}
+
+/* Убедимся, что на мобильных всё кликается */
+.header-top a {
+    position: relative;
+    z-index: 100;
+}
+
+
+
+/* --- ПОДВАЛ --- */
+.footer {
+    background-color: #f9f9f9;
+    padding: 60px 5%;
+    border-top: 1px solid #eee;
+}
+
+.footer-sections {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: #888; text-decoration: none; font-size: 13px; }
+.footer-col h4 { text-transform: uppercase; font-size: 14px; margin-bottom: 5px; }
+.copyright { text-align: center; margin-top: 40px; color: #ccc; font-size: 11px; }
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 1024px) {
+    .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    .founder-section { flex-direction: column; }
+    .myphoto, .aboutMe { 
+        max-width: 100%; 
+        padding: 20px 4%; 
+        text-align: center;
+    }
+    .aboutMe h2, .aboutMe p { text-align: center; }
+}
+
+.product-card a {
+    text-decoration: none; 
+    color: inherit;
+    display: block; 
+}
+
+/* ========== ИСПРАВЛЕНИЯ ДЛЯ КЛИКАБЕЛЬНОСТИ НА МОБИЛЬНЫХ (без изменения дизайна) ========== */
+@media (max-width: 768px) {
+    /* 1. Принудительно включаем клики для всех навигационных элементов */
+    .header-top,
+    .main-nav,
+    .product-card,
+    .footer-col a,
+    .back-link,
+    .header-top a {
+        pointer-events: auto !important;
+        touch-action: manipulation;      /* ускоряет реакцию на касание */
+    }
+
+    /* 2. Убираем возможное перекрытие от псевдоэлементов фона */
+    .founder-hero::before {
+        display: none !important;
+    }
+
+    /* 3. Увеличиваем область нажатия для мелких ссылок (визуально не меняется) */
+    .main-nav a,
+    .footer-col a,
+    .back-link {
+        display: inline-block;
+        padding: 8px 4px;
+        margin: -4px 0;
+    }
+
+    /* 4. Ссылка внутри карточки товара занимает всю карточку */
+    .product-card a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 5. Гарантируем, что шапка и меню выше всего */
+    .black-header {
+        position: relative;
+        z-index: 1000;
+    }
+    .header-top {
+        position: relative;
+        z-index: 1001;
+    }
+    .header-top a {
+        position: relative;
+        z-index: 1002;
+    }
+
+    /* 6. Убираем случайный overflow, который может обрезать кликабельные области */
+    body,
+    .main-content {
+        overflow-x: visible !important;
+    }
+}
+
+/* Для всех устройств: улучшаем отклик на касание */
+a, button, .product-card, .back-link {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+}
